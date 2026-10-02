@@ -1,4 +1,4 @@
-export default function SelectField({ label, name, options, value, onChange, onBlur, error, required = false }) {
+export default function SelectField({ label, name, options, value, onChange, onBlur, error, required = false, showPlaceholder = true }) {
   return (
     <div className="w-full">
       <label htmlFor={name} className="block text-sm font-medium text-slate-700 mb-1">
@@ -16,7 +16,7 @@ export default function SelectField({ label, name, options, value, onChange, onB
         aria-invalid={error ? 'true' : 'false'}
         aria-describedby={error ? `${name}-error` : undefined}
       >
-        <option value="">Select {label}</option>
+        {showPlaceholder && <option value="">Select {label}</option>}
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>
             {opt.label}

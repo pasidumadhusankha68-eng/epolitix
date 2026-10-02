@@ -2,14 +2,18 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Register from './pages/Register.jsx'
 import Login from './pages/Login.jsx'
+import Resources from './pages/Resources.jsx'
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-    </Routes>
+    <div className="max-w-screen overflow-x-hidden">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/resources" element={<Resources />} />
+      </Routes>
+    </div>
   )
 }
 

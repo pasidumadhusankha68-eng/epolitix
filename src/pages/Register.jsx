@@ -5,6 +5,8 @@ import InputField from '../components/InputField'
 import SelectField from '../components/SelectField'
 import FileUploadField from '../components/FileUploadField'
 import { validateEmail, validateMobile, validateNIC, validatePassword, institutes } from '../utils/validation'
+import regBg from '../img/reg_bg.png'
+import logingBg from '../img/login_bg.png'
 
 const initialFormData = {
   fullName: '',
@@ -13,6 +15,7 @@ const initialFormData = {
   alYear: '',
   school: '',
   institute: '',
+  gender: '',
   nic: '',
   email: '',
   mobile: '',
@@ -30,6 +33,7 @@ const initialErrors = {
   alYear: '',
   school: '',
   institute: '',
+  gender: '',
   nic: '',
   email: '',
   mobile: '',
@@ -81,6 +85,9 @@ export default function Register() {
         break
       case 'institute':
         if (!value) error = 'Institute is required'
+        break
+      case 'gender':
+        if (!value) error = 'Gender is required'
         break
       case 'nic':
         if (!value.trim()) error = 'NIC number is required'
@@ -155,14 +162,19 @@ export default function Register() {
     alert('Registration submitted! Check console for data.')
   }
 
-  return (
-    <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto">
-        <div className="flex justify-center mb-6" style={{ marginTop: '10vh' }}>
-          <Logo size="2xl" />
-        </div>
+return (
+    <div className="min-h-screen flex">
+      <div className="w-1/2 min-h-screen flex items-center justify-center  hidden lg:flex">
+        <img src={regBg} alt="E-PolitiX" className="w-full h-auto max-w-full" />
+      </div>
 
-        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 sm:p-8">
+      <div className="w-full lg:w-1/2 bg-slate-50 min-h-screen flex items-center justify-center px-8 py-8">
+        <div className="w-full max-w-md">
+          <div className="flex justify-center mb-8" style={{ marginTop: '5vh' }}>
+            <Logo size="2xl" />
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-slate-800 text-center mb-6">Registration</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5" noValidate>
@@ -223,16 +235,34 @@ export default function Register() {
               />
             </div>
 
-            <SelectField
-              label="Institute"
-              name="institute"
-              options={institutes}
-              value={formData.institute}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.institute ? errors.institute : ''}
-              required
-            />
+<div className="grid grid-cols-2 gap-4">
+              <SelectField
+                label="Institute"
+                name="institute"
+                options={institutes}
+                value={formData.institute}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.institute ? errors.institute : ''}
+                required
+                showPlaceholder={false}
+              />
+
+              <SelectField
+                label="Gender"
+                name="gender"
+                options={[
+                  { value: 'male', label: 'Male' },
+                  { value: 'female', label: 'Female' },
+                ]}
+                value={formData.gender}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.gender ? errors.gender : ''}
+                required
+                showPlaceholder={false}
+              />
+            </div>
 
             <InputField
               label="NIC Number"
@@ -292,37 +322,6 @@ export default function Register() {
               required
             />
 
-            <p className="mt-6 text-left text-xs text-slate-600">
-              Files size must be below 2MB
-            </p>
-
-            <FileUploadField
-              label="NIC Front Photo"
-              name="nicFront"
-              value={formData.nicFront}
-              onChange={handleChange}
-              error={touched.nicFront ? errors.nicFront : ''}
-              required
-            />
-
-            <FileUploadField
-              label="NIC Back Photo"
-              name="nicBack"
-              value={formData.nicBack}
-              onChange={handleChange}
-              error={touched.nicBack ? errors.nicBack : ''}
-              required
-            />
-
-            <FileUploadField
-              label="Profile Photo"
-              name="profilePhoto"
-              value={formData.profilePhoto}
-              onChange={handleChange}
-              error={touched.profilePhoto ? errors.profilePhoto : ''}
-              optional
-            />
-
             <button
               type="submit"
               disabled={isSubmitting}
@@ -338,6 +337,7 @@ export default function Register() {
               Login
             </Link>
           </p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,20 +1,23 @@
+import mainLogo from '../img/main_logo.svg'
+
 export default function Logo({ size = 'base' }) {
   const sizeClasses = {
-    sm: 'text-sm',
-    base: 'text-base',
-    lg: 'text-lg',
-    xl: 'text-xl',
-    '2xl': 'text-2xl',
-    '3xl': 'text-3xl',
-    '4xl': 'text-4xl',
+    sm: 'h-6 w-auto',
+    base: 'h-8 w-auto',
+    lg: 'h-10 w-auto',
+    xl: 'h-12 w-auto',
+    '2xl': 'h-14 w-auto',
+    '3xl': 'h-16 w-auto',
+    '4xl': 'h-20 w-auto',
   }
 
   const baseSize = sizeClasses[size] || sizeClasses.base
 
   return (
-    <span className={`font-poppins font-bold text-slate-800 ${baseSize}`}>
-      <span className="text-sky-500 opacity-50">E - Politi</span>
-      <span className="text-sky-500 text-4xl opacity-70">X</span>
-    </span>
+    <img
+      src={mainLogo}
+      alt="E-PolitiX Logo"
+      className={baseSize}
+    />
   )
 }

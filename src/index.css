@@ -4,13 +4,19 @@
 
 @layer base {
   html {
-    @apply text-slate-800 antialiased;
+    @apply text-slate-800 antialiased overflow-x-hidden;
   }
 }
 
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.15s ease-out;
+  }
+  .animate-slide-in-right {
+    animation: slideInRight 0.2s ease-out;
+  }
+  .animate-slide-out-right {
+    animation: slideOutRight 0.2s ease-in;
   }
 }
 
@@ -22,5 +28,27 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 }
